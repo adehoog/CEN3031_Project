@@ -1,6 +1,6 @@
 # CEN3031_Project
 ## Description
-The project is a website with multiple classic board games available such as connect four, checkers, and tic tac toe. It will also have a few card games such as [insert card games here]. To avoid programming any AI, multipalyer games will require real people to play by taking turns using the same screen. 
+The project is a website with multiple classic board games available such as connect four, checkers, hangman, and tic tac toe. It will also have a few card games such as blackjack and go fish. To avoid programming any AI, multipalyer games will either require real people to play by taking turns using the same screen (like with tic tac toe) or the computer will have basic decision making skills (like with go fish). 
 ## Members
 Frontend: Audrey (adehoog) and Bryan (bryansmith85)
 
