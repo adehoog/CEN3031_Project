@@ -19,6 +19,7 @@ type game struct {
 func (g game) updateBoard() game {
 
 	// Get input on which spot user selected
+	// TODO: Get input from mouse
 	var row int
 	var col int
 	fmt.Scanln(&row, &col)
