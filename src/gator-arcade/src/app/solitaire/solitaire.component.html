@@ -1,0 +1,20 @@
+<p>solitaire works!</p>
+<div class="solitaire-container">
+    <div class="solitaire-table">
+      <div class="solitaire-stock">
+        <div class="solitaire-card" *ngFor="let card of stock"></div>
+      </div>
+      <div class="solitaire-tableau" *ngFor="let tableau of tableaus">
+        <div class="solitaire-card" *ngFor="let card of tableau"></div>
+      </div>
+      <div class="solitaire-foundation" *ngFor="let foundation of foundations">
+        <div class="solitaire-card" *ngFor="let card of foundation"></div>
+      </div>
+    </div>
+    <div class="solitaire-controls">
+      <button mat-raised-button (click)="drawCard()">Draw</button>
+      <button mat-raised-button (click)="restartGame()">Restart</button>
+    </div>
+    <div class="pile" (click)="moveCard(fromPile, toPile)">
+      </div>
+  </div>

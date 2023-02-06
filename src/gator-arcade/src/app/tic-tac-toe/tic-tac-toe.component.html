@@ -1,0 +1,22 @@
+<p>tic-tac-toe works!</p>
+<div class="board">
+    <div class="row" *ngFor="let row of board">
+      <div class="cell" *ngFor="let cell of row" (click)="makeMove(cell)">
+        {{ cell }}
+      </div>
+    </div>
+  </div>
+  <div [ngSwitch]="gameState">
+    <div *ngSwitchCase="'WON'" class="message">
+      Game won by {{ winner }}!
+    </div>
+    <div *ngSwitchCase="'LOST'" class="message">
+      Game lost!
+    </div>
+    <div *ngSwitchCase="'TIED'" class="message">
+      Game tied!
+    </div>
+  </div>
+  
+  <button mat-raised-button color="primary" (click)="reset()">Reset</button>
+  

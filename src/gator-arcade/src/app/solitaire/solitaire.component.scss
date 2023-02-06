@@ -1,0 +1,57 @@
+/* General Styles */
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    height: 800px;
+    margin: 0 auto;
+    border: 1px solid black;
+  }
+  
+  /* Styles for each card */
+  .card {
+    width: 70px;
+    height: 100px;
+    background-color: white;
+    border: 1px solid black;
+    margin: 10px;
+  }
+  
+  /* Styles for face-down cards */
+  .card.facedown {
+    background-color: gray;
+  }
+  
+  /* Styles for selected cards */
+  .card.selected {
+    border: 3px solid blue;
+  }
+  
+  /* Styles for matched cards */
+  .card.matched {
+    background-color: green;
+  }
+  
+.solitaire-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.piles {
+    width: 100px;
+    height: 150px;
+    margin: 10px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.piles .card {
+    width: 90px;
+    height: 130px;
+    margin-top: 10px;
+}
+
