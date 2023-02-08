@@ -16,5 +16,9 @@ As a site visitor, I want a website that has material design buttons for its gam
 5. Connect Tic Tac Toe script to front end
 ### Which ones were successfully completed
 1. Setup Angular + Golang
-2. 
+2. Created some of the starting menu
+3. Write Tic Tac Toe game script
 ### Which ones didn't and why?
+Front end team was unable to create a full starting menu and Tic Tac Toe visuals because we ran into a lot of issues setting up the project, so issue (1) took up the majority of frontend work during sprint 1.
+
+We were unable to conenct the Tic Tac Toe script to the front end because of the delays caused by the Angular + Golang setup. However, the back end team was able to make both a script for the Tic Tac Toe game and for the War game in Go. 
