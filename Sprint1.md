@@ -27,3 +27,7 @@ As a developer, I want a user-friendly interface for my site visitors so that us
 Front end team was unable to create a full starting menu and Tic Tac Toe visuals because we ran into a lot of issues setting up the project, so issue (1) took up the majority of frontend work during sprint 1.
 
 We were unable to conenct the Tic Tac Toe script to the front end because of the delays caused by the Angular + Golang setup. However, the back end team was able to make both a script for the Tic Tac Toe game and for the War game in Go.
+
+### Video Links
+Frontend: https://youtu.be/yJKZGpW11c8
+Backend: https://youtu.be/nIaLuelxKPg
