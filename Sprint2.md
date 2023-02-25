@@ -1,7 +1,7 @@
-###**Detail of Work Completed in Sprint 2**
+### **Detail of Work Completed in Sprint 2**
 
-###**Unit Tests and Cypress Test for Frontend**
+### **Unit Tests and Cypress Test for Frontend**
 
-###**Unit Tests for Backend**
+### **Unit Tests for Backend**
 
-###**Video Links**
+### **Video Links**
