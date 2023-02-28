@@ -1,7 +1,7 @@
 <p>tic-tac-toe works!</p>
 <div class="board">
-    <div class="row" *ngFor="let row of board">
-      <div class="cell" *ngFor="let cell of row" (click)="makeMove(cell)">
+    <div class="row" *ngFor="let row of board; let x = index">
+      <div class="cell" *ngFor="let cell of row; let y = index" (click)="makeMove(x, y, cell)">
         {{ cell }}
       </div>
     </div>

@@ -1,23 +1,27 @@
 .board {
     border: solid 2px black;
-    display: flex;
-    flex-wrap: wrap;
+    margin: 0px auto;
 }
 
 .row {
-    display: flex;
+    display: table-row;
 }
 
 .cell {
-    width: 33.33%;
-    height: 33.33%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 48px;
-    font-weight: bold;
-    border: solid 1px black;
+  width:136px;
+	height:136px;
+	display:table-cell;
+	background-color:#ccc;
+	border-bottom:1px solid #999;
+	border-right:1px solid #999;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 48px;
+  font-weight: bold;
+	cursor:pointer;
 }
+
 .mat-icon-button {
     background-color: blue;
     border-color: black;
