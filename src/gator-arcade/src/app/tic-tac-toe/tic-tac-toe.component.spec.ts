@@ -22,12 +22,12 @@ describe('TicTacToeComponent', () => {
   });
 
   it('should update cell value when makeMove is called', () => {
-    component.makeMove(component.board[0][0]);
-    expect(component.board[0][0]).toEqual(component.currentPlayer);
+    component.makeMove(0, 0, component.board[0][0]);
+    expect(component.board[0][0]).toEqual('X');
   });
 
   it('should reset the game state when reset method is called', () => {
-    component.makeMove(component.board[0][0]);
+    component.makeMove(0, 0, component.board[0][0]);
     component.reset();
     expect(component.board).toEqual([        
       ['', '', ''],
