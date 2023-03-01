@@ -36,7 +36,7 @@ Tutorial: Tic-Tac-Toe
 
 To start the game, first run the following command in the terminal:
 ```
-go run main.go
+go run tictactoe.go
 ```
 A prompt will show asking Player 1 to choose their marker. Type 'X' or 'O' and hit ENTER. At this point, a blank board should display on the screen, and another prompt to select a spot on the board. In order to do this, type in the ROW and COLUMN number separated by only a space and then hit ENTER. The display will show the updated board with your marker in the selected spot. For example, typing in "1 2" will return:
 ```
@@ -68,7 +68,7 @@ Tutorial: War
 
 To start the game, first run the following command in the terminal:
 ```
-go run main.go
+go run war.go
 ```
 
 A deck is initialized with numbers assigned to each card and then shuffled using the Fisher-Yates Shuffle algorithm. The deck is then split between Player 1 and Player 2 (26 cards each). The game will begin to automatically draw and compare cards for both players and display the results on the screen:
