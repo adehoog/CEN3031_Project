@@ -1,5 +1,6 @@
 ### **Detail of Work Completed in Sprint 2**
 **Frontend**
+
 Created the tic-tac-toe.service.ts file that contains the implementation of the tic-tac-toe service. The functions createGame, getGame, updateGame, displayBoard, updateBoard, makeMove, checkIfWon, isDraw, and handleError are functions that define behaviors of the game tic-tac-toe.
 
 Created the tic-tac-toe.service.spec.ts file which is the testing file that tests the tic-tac-toe.service.ts file functions using Karma automated testing software to test the functions in the browser. This file contains a suite of tests that ensure the tic-tac-toe.service.ts file functions are working as expected, as well as providing a description of the expected behavior of each function.
