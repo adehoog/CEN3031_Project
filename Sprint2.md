@@ -1,5 +1,8 @@
 ### **Detail of Work Completed in Sprint 2**
 **Frontend**
+Created the tic-tac-toe.service.ts file that contains the implementation of the tic-tac-toe service. The functions createGame, getGame, updateGame, displayBoard, updateBoard, makeMove, checkIfWon, isDraw, and handleError are functions that define behaviors of the game tic-tac-toe.
+
+Created the tic-tac-toe.service.spec.ts file which is the testing file that tests the tic-tac-toe.service.ts file functions using Karma automated testing software to test the functions in the browser. This file contains a suite of tests that ensure the tic-tac-toe.service.ts file functions are working as expected, as well as providing a description of the expected behavior of each function.
 
 Created unit test and Cypress test. Created tic-tac-toe board and its basic functionality. 
 
@@ -9,7 +12,21 @@ Created unit test and Cypress test. Created tic-tac-toe board and its basic func
 2. AppComponent - should create the app, should have as title 'gator-arcade'
 3. SolitaireComponent - should create
 4. ConnectFourComponent - should create
-5. TicTacToeComponent - should create, should update cell value when makeMove is called, should reset the game state when reset method is called
+5. TicTacToeComponent - 
+    handleError     - should log errors and return an observable of the given result
+    createGame      - should create a new game and return it
+    isDraw          - should return false for a non-draw game
+                    - should return true for a draw game
+    checkIfWon      - should return true if a player has won
+                    - should return false if a player has not won 
+    makeMove        - should return an Observable<Game>
+    displayBoard    - should display the game board with dashes
+    updateBoard     - should update the game board with a valid move
+                    - should not update the game board with an invalid move
+    getGame         - should retrieve a specific game
+                    - should retrieve all games
+    updateGame      - should send an HTTP PUT request to update a game on the server
+                    - should handle errors when updating a game     
 6. CheckersComponent - should create
 
 **Cypress test**
