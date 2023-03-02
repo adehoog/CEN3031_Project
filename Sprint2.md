@@ -45,7 +45,10 @@ Test tic-tac-toe board - the board should update when empty cell is clicked, swa
 4. TestIsDraw - should test that the program recognizes when the game is a draw
 
 **War**
-
+1. TestHandleTie_DepthOne - should test that when players draw two cards of the same value, the winner receives the correct number of cards.
+2. TestHandleTie_DepthTwo - should test that if two players tie, then tie again in the resolution of the initial tie, the winner still receives the correct number of cards.
+3. TestPlayGame_Draw - should test that given identical decks that were not shuffled, a draw is reached after 5000 rounds.
+4. TestInitDeck_WinnerHasAllCards - should test that upon the game's end, there are still 52 cards (no leakage).
 
 
 ### **Backend Documentation**
