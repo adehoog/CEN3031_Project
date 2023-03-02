@@ -30,6 +30,29 @@ Created unit test and Cypress test. Created tic-tac-toe board and its basic func
                     - should handle errors when updating a game     
 6. CheckersComponent - should create
 
+| Component | Method | Description |
+| --- | --- | --- |
+| WarComponent |  | should create |
+| AppComponent |  | should create the app, should have as title 'gator-arcade' |
+| SolitaireComponent |  | should create |
+| ConnectFourComponent |  | should create |
+| TicTacToeComponent | handleError | should log errors and return an observable of the given result |
+|  | createGame | should create a new game and return it |
+|  | isDraw | should return false for a non-draw game |
+|  |  | should return true for a draw game |
+|  | checkIfWon | should return true if a player has won |
+|  |  | should return false if a player has not won |
+|  | makeMove | should return an Observable<Game> |
+|  | displayBoard | should display the game board with dashes |
+|  | updateBoard | should update the game board with a valid move |
+|  |  | should not update the game board with an invalid move |
+|  | getGame | should retrieve a specific game |
+|  |  | should retrieve all games |
+|  | updateGame | should send an HTTP PUT request to update a game on the server |
+|  |  | should handle errors when updating a game |
+| CheckersComponent |  | should create |
+
+
 **Cypress test**
 
 Test tic-tac-toe board - the board should update when empty cell is clicked, swapping between X and O (no win/lose parameters set up yet), and the board should return to being blank when the reset button is clicked. 
