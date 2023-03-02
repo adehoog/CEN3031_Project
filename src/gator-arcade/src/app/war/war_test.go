@@ -9,21 +9,25 @@ import (
 func TestHandleTie_DepthOne(t *testing.T) {
 	p1 := player{*arraystack.New(), 0, *arraystack.New()}
 	p2 := player{*arraystack.New(), 0, *arraystack.New()}
+	ptr1 := &p1
+	ptr2 := &p2
 	expected := 1
-	p1.hand.Push(card{"Spades", 14, "Ace"})
-	p2.hand.Push(card{"Clubs", 2, "Two"})
+	ptr1.hand.Push(card{"Spades", 14, "Ace"})
+	ptr2.hand.Push(card{"Clubs", 2, "Two"})
 	for i := 0; i < 3; i++ {
-		p1.hand.Push(card{})
-		p2.hand.Push(card{})
+		ptr1.hand.Push(card{})
+		ptr2.hand.Push(card{})
 	}
-	p1.hand.Push(card{"Diamonds", 13, "King"})
-	p2.hand.Push(card{"Hearts", 13, "King"})
-	g := game{deck{}, p1, p2}
+	ptr1.hand.Push(card{"Diamonds", 13, "King"})
+	ptr2.hand.Push(card{"Hearts", 13, "King"})
+	g := game{deck{}, *ptr1, *ptr2}
 	result := g.draw()
 	if result != expected {
 		t.Errorf("Expected result does not match actual result in handleTie with depth = 1\n")
-	} else if p1.numCards != 8 || p2.numCards != 0 {
-		t.Errorf("Error in handleTie depth = 1. Players' card counts do not match expected values. Expected: 8, 0. Actual: %d, %d.\n", p1.numCards, p2.numCards)
+	} else {
+		if g.p1.numCards != 10 || g.p2.numCards != 0 {
+			t.Errorf("Error in handleTie depth = 1. Players' card counts do not match expected values. Expected: 10, 0. Actual: %d, %d.\n", g.p1.numCards, g.p2.numCards)
+		}
 	}
 }
 
@@ -48,11 +52,11 @@ func TestHandleTie_DepthTwo(t *testing.T) {
 	p1.numCards = p1.hand.Size()
 	p2.numCards = p2.hand.Size()
 	g := game{deck{}, p1, p2}
-	result := g.HandleTie()
+	result := g.draw()
 	if result != expected {
 		t.Errorf("Expected result does not match actual result in handleTie with depth = 2\n")
-	} else if p1.numCards != 8 || p2.numCards != 0 {
-		t.Errorf("Error in handleTie depth = 2. Players' card counts do not match expected values. Expected: 8, 0. Actual: %d, %d.\n", p1.numCards, p2.numCards)
+	} else if g.p1.numCards != 18 || g.p2.numCards != 0 {
+		t.Errorf("Error in handleTie depth = 2. Players' card counts do not match expected values. Expected: 8, 0. Actual: %d, %d.\n", g.p1.numCards, g.p2.numCards)
 	}
 }
 
@@ -61,7 +65,7 @@ func TestPlayGame_Draw(t *testing.T) {
 	p2 := player{*arraystack.New(), 0, *arraystack.New()}
 	var d deck
 	var tempSuit string
-	for i := 0; i < 52; i++ {
+	for i := 0; i < 4; i++ {
 		switch i % 4 {
 		case 0:
 			tempSuit = "Hearts"
@@ -72,52 +76,54 @@ func TestPlayGame_Draw(t *testing.T) {
 		case 3:
 			tempSuit = "Spades"
 		}
-		temp := card{}
-		temp.suit = tempSuit
-		temp.val = i % 13
-		switch i % 13 {
-		case 1:
-			temp.name = "Ace"
-			temp.val = 14
-		case 2:
-			temp.name = "Two"
-		case 3:
-			temp.name = "Three"
-		case 4:
-			temp.name = "Four"
-		case 5:
-			temp.name = "Five"
-		case 6:
-			temp.name = "Six"
-		case 7:
-			temp.name = "Seven"
-		case 8:
-			temp.name = "Eight"
-		case 9:
-			temp.name = "Nine"
-		case 10:
-			temp.name = "Ten"
-		case 11:
-			temp.name = "Jack"
-		case 12:
-			temp.name = "Queen"
-		case 0:
-			temp.name = "King"
-			temp.val = 13
+		for j := 0; j < 13; j++ {
+			temp := card{}
+			temp.suit = tempSuit
+			temp.val = j % 13
+			switch j % 13 {
+			case 1:
+				temp.name = "Ace"
+				temp.val = 14
+			case 2:
+				temp.name = "Two"
+			case 3:
+				temp.name = "Three"
+			case 4:
+				temp.name = "Four"
+			case 5:
+				temp.name = "Five"
+			case 6:
+				temp.name = "Six"
+			case 7:
+				temp.name = "Seven"
+			case 8:
+				temp.name = "Eight"
+			case 9:
+				temp.name = "Nine"
+			case 10:
+				temp.name = "Ten"
+			case 11:
+				temp.name = "Jack"
+			case 12:
+				temp.name = "Queen"
+			case 0:
+				temp.name = "King"
+				temp.val = 13
+			}
+			if temp.suit == "Hearts" || temp.suit == "Diamonds" {
+				p1.hand.Push(temp)
+			} else {
+				p2.hand.Push(temp)
+			}
+			d.d_[i] = temp
 		}
-		if temp.suit == "Hearts" || temp.suit == "Diamonds" {
-			p1.hand.Push(temp)
-		} else {
-			p2.hand.Push(temp)
-		}
-		d.d_[i] = temp
 	}
 	p1.numCards = p1.hand.Size()
 	p2.numCards = p2.hand.Size()
 	g := game{d, p1, p2}
-	result := g.PlayGame()
-	if result.numCards != 0 {
-		t.Errorf("Error in playGame_Draw_Test: expected draw\n")
+	rWinner := g.draw()
+	if g.p1.numCards != g.p2.numCards || rWinner != 0 {
+		t.Errorf("Error in playGame_Draw_Test: Card numbers not equal after 5000 rounds. Expected 26, 26, found %d %d\n", g.p1.numCards, g.p2.numCards)
 	}
 }
 

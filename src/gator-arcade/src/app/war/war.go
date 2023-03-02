@@ -197,10 +197,10 @@ func (g game) InitDeck(d *deck) player {
 		}
 		g.d.d_[i] = temp
 	}
-	return g.shuffle()
+	return g.InitHands()
 }
 
-func (g game) shuffle() player { //Fisher-Yates Shuffle algorithm
+func (g game) InitHands() player { //Fisher-Yates Shuffle algorithm
 	var r int
 	var temp card
 	for i := 51; i > 0; i-- {
@@ -209,10 +209,6 @@ func (g game) shuffle() player { //Fisher-Yates Shuffle algorithm
 		g.d.d_[r] = g.d.d_[i]
 		g.d.d_[i] = temp
 	}
-	return g.deal()
-}
-
-func (g game) deal() player {
 	g.p1.hand = *arraystack.New()
 	g.p2.hand = *arraystack.New()
 	g.p1.newHand = *arraystack.New()
@@ -227,7 +223,6 @@ func (g game) deal() player {
 	}
 	g.p1.numCards = 26
 	if g.p1.hand.Size() != 26 {
-		fmt.Printf("Size error in func deal: P1 hand stack is size %d", g.p1.newHand.Size())
 		return player{}
 	}
 	g.p2.numCards = 26
@@ -282,6 +277,9 @@ func (g *game) draw() int { //return num of player who won
 		} else if retval == 2 {
 			g.p2.newHand.Push(card1.(card))
 			g.p2.newHand.Push(card2.(card))
+		} else {
+			g.p1.newHand.Push(v1)
+			g.p2.newHand.Push(v2)
 		}
 	}
 	g.p1.numCards = g.p1.hand.Size() + g.p1.newHand.Size()
