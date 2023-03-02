@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"math/rand"
 
 	"github.com/emirpasic/gods/stacks/arraystack"
@@ -28,51 +29,83 @@ type game struct {
 	p1, p2 player
 }
 
-func (g *game) handEmpty() {
-	if g.p1.hand.Size() == 0 {
-		g.p1.hand = g.p1.newHand
-		g.p1.newHand.Clear()
-		g.p1.numCards = g.p1.hand.Size()
-	}
-	if g.p2.hand.Size() == 0 {
-		g.p2.hand = g.p2.newHand
-		g.p2.newHand.Clear()
-		g.p2.numCards = g.p2.hand.Size()
-	}
-}
-
-func (g *game) handleTie() int {
+func (g *game) HandleTie() int {
 	pot1 := [3]card{}
 	pot2 := [3]card{}
-	var temp1 interface{}
-	var temp2 interface{}
+	var t1, t2 interface{}
+	var temp1, temp2 card
 	var b1, b2 bool
 	fmt.Println("It's a tie! Drawing 3 cards each...")
 	for i := 0; i < 3; i++ {
-		temp1, b1 = g.p1.hand.Pop()
-		temp2, b2 = g.p2.hand.Pop()
-		if !b1 {
-			g.p1.hand = g.p1.newHand
-			g.p1.newHand = *arraystack.New()
-			temp1, b1 = g.p1.hand.Pop()
-			if !b1 {
+		t1, b1 = g.p1.hand.Peek()
+		t2, b2 = g.p2.hand.Peek()
+		if b1 && b2 {
+			g.p1.hand.Pop()
+			g.p2.hand.Pop()
+			g.p1.numCards--
+			g.p2.numCards--
+		} else if b1 {
+			//p2 hand is empty
+			g.p1.hand.Pop()
+			if g.p2.newHand.Empty() { //no cards left for p2
+				for j := 0; j < i; j++ {
+					g.p1.newHand.Push(pot1[j])
+					g.p1.newHand.Push(pot2[j])
+					g.p1.numCards += 2
+				}
+				return 1
+			} else {
+				g.p2.hand = g.p2.newHand
+				g.p2.newHand = *arraystack.New()
+				t2, b2 = g.p2.hand.Pop()
+			}
+
+		} else if b2 {
+			//p1 hand empty
+			g.p2.hand.Pop()
+			if g.p1.newHand.Empty() {
+				for j := 0; j < i; j++ {
+					g.p2.newHand.Push(pot1[j])
+					g.p2.newHand.Push(pot2[j])
+					g.p2.numCards += 2
+				}
 				return 2
+			} else {
+				g.p1.hand = g.p1.newHand
+				g.p1.newHand = *arraystack.New()
+				t1, b1 = g.p1.hand.Pop()
+			}
+		} else {
+			//both empty
+			if i == 0 {
+				return 0
+			}
+			if pot1[i-1].val > pot2[i-1].val {
+				for j := 0; j < i; j++ {
+					g.p1.newHand.Push(pot1[j])
+					g.p1.newHand.Push(pot2[j])
+					g.p1.numCards += 2
+				}
+				return 1
+			} else if pot2[i-1].val > pot1[i-1].val {
+				for j := 0; j < i; j++ {
+					g.p2.newHand.Push(pot1[j])
+					g.p2.newHand.Push(pot2[j])
+					g.p2.numCards += 2
+				}
+				return 2
+			} else {
+				return 0
 			}
 		}
-		if !b2 {
-			g.p2.hand = g.p2.newHand
-			g.p2.newHand = *arraystack.New()
-			temp2, b2 = g.p2.hand.Pop()
-			if !b2 {
-				return 1 //quick fix, needs work
-			}
-		}
-		pot1[i] = temp1.(card)
-		pot2[i] = temp2.(card)
+		temp1 = t1.(card)
+		temp2 = t2.(card)
+		pot1[i] = temp1
+		pot2[i] = temp2
 	}
 	j := g.draw()
 	if j == 0 {
-		k := g.handleTie()
+		k := g.HandleTie()
 		for i := 0; i < 3; i++ {
 			if k == 1 {
 				g.p1.newHand.Push(pot1[i])
@@ -90,14 +123,8 @@ func (g *game) handleTie() int {
 	}
 	if j == 1 {
 		fmt.Println("Congrats, Player 1! You won/saved the following cards:")
-		i_ := 0
-		if g.p1.numCards < g.p2.numCards && g.p1.numCards < 3 {
-			i_ = g.p1.numCards
-		} else if g.p2.numCards < 3 {
-			i_ = g.p2.numCards
-		} else {
-			i_ = 3
-		}
+		i_ := (int)(math.Min((float64)(len(pot1)), (float64)(len(pot2))))
+
 		for i := 0; i < i_; i++ {
 			g.p1.newHand.Push(pot1[i])
 			g.p1.newHand.Push(pot2[i])
@@ -109,7 +136,8 @@ func (g *game) handleTie() int {
 	}
 	if j == 2 {
 		fmt.Println("Congrats, Player 2! You won/saved the following cards:")
-		for i := 0; i < 3; i++ {
+		i_ := (int)(math.Min((float64)(len(pot1)), (float64)(len(pot2))))
+		for i := 0; i < i_; i++ {
 			g.p2.newHand.Push(pot2[i])
 			g.p2.newHand.Push(pot1[i])
 			g.p2.numCards += 2
@@ -121,7 +149,7 @@ func (g *game) handleTie() int {
 	return -1
 }
 
-func (g game) initDeck(d *deck) {
+func (g game) InitDeck(d *deck) player {
 	var tempSuit string
 	for i := 0; i < 52; i++ {
 		switch i % 4 {
@@ -169,22 +197,22 @@ func (g game) initDeck(d *deck) {
 		}
 		g.d.d_[i] = temp
 	}
-	g.shuffle()
+	return g.shuffle()
 }
 
-func (g game) shuffle() { //Fisher-Yates Shuffle algorithm
+func (g game) shuffle() player { //Fisher-Yates Shuffle algorithm
 	var r int
-	temp := card{}
+	var temp card
 	for i := 51; i > 0; i-- {
 		r = rand.Intn(i)
 		temp = g.d.d_[r]
 		g.d.d_[r] = g.d.d_[i]
 		g.d.d_[i] = temp
 	}
-	g.deal()
+	return g.deal()
 }
 
-func (g game) deal() {
+func (g game) deal() player {
 	g.p1.hand = *arraystack.New()
 	g.p2.hand = *arraystack.New()
 	g.p1.newHand = *arraystack.New()
@@ -200,9 +228,10 @@ func (g game) deal() {
 	g.p1.numCards = 26
 	if g.p1.hand.Size() != 26 {
 		fmt.Printf("Size error in func deal: P1 hand stack is size %d", g.p1.newHand.Size())
+		return player{}
 	}
 	g.p2.numCards = 26
-	g.playGame()
+	return g.PlayGame()
 }
 
 func (g *game) draw() int { //return num of player who won
@@ -216,6 +245,7 @@ func (g *game) draw() int { //return num of player who won
 		g.p1.newHand = *arraystack.New()
 		card1, _1 = g.p1.hand.Pop()
 		if !_1 {
+			g.p2.hand.Push(card2.(card))
 			return 2
 		}
 	}
@@ -224,6 +254,7 @@ func (g *game) draw() int { //return num of player who won
 		g.p2.newHand = *arraystack.New()
 		card2, _2 = g.p2.hand.Pop()
 		if !_2 {
+			g.p1.hand.Push(card1.(card))
 			return 1
 		}
 	}
@@ -244,7 +275,7 @@ func (g *game) draw() int { //return num of player who won
 		fmt.Println("Player 2 wins this round!")
 	}
 	if v1 == v2 {
-		retval = g.handleTie()
+		retval = g.HandleTie()
 		if retval == 1 {
 			g.p1.newHand.Push(card1.(card))
 			g.p1.newHand.Push(card2.(card))
@@ -258,7 +289,7 @@ func (g *game) draw() int { //return num of player who won
 	return retval
 }
 
-func (g game) playGame() {
+func (g game) PlayGame() player {
 	fmt.Println("Beginning the game now!")
 	roundNum := 0
 	gameOver := false
@@ -268,7 +299,7 @@ func (g game) playGame() {
 		rWinner = g.draw()
 		g.p1.numCards = g.p1.hand.Size() + g.p1.newHand.Size()
 		g.p2.numCards = g.p2.hand.Size() + g.p2.newHand.Size()
-		if g.p1.numCards >= 51 || g.p2.numCards >= 51 || roundNum >= 5000 { //online study found that 88.2% of simulated war games run for under 5000 turns
+		if g.p1.numCards == 0 || g.p2.numCards == 0 || roundNum >= 5000 || rWinner == 0 { //online study found that 88.2% of simulated war games run for under 5000 turns
 			gameOver = true
 		}
 	}
@@ -285,15 +316,33 @@ func (g game) playGame() {
 			rWinner = 0
 			fmt.Println("It's a tie after 5000 turns. Wow! What a game!")
 		}
-		return
+	} else {
+		fmt.Printf("Player %d won the game after %d rounds! Thanks for playing.", rWinner, roundNum)
 	}
-	fmt.Printf("Player %d won the game after %d rounds! Thanks for playing.", rWinner, roundNum)
+	if rWinner == 1 {
+		return g.p1
+	}
+	if rWinner == 2 {
+		return g.p2
+	}
+	return player{}
 }
 
 func main() {
+	var uInput string
 	d := deck{}
 	p1 := player{}
 	p2 := player{}
 	g := game{d, p1, p2}
-	g.initDeck(&g.d)
+	uInput = "Y"
+	g.InitDeck(&g.d)
+	for uInput == "Y" {
+		d = deck{}
+		p1 = player{}
+		p2 = player{}
+		g = game{d, p1, p2}
+		g.InitDeck(&g.d)
+		fmt.Println("Would you like to play again? Y/N")
+		fmt.Scanln(&uInput)
+	}
 }
