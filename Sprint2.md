@@ -9,26 +9,6 @@ Created unit test and Cypress test. Created tic-tac-toe board and its basic func
 
 ### **Unit Tests and Cypress Test for Frontend**
 **Unit Tests**
-1. WarComponent - should create
-2. AppComponent - should create the app, should have as title 'gator-arcade'
-3. SolitaireComponent - should create
-4. ConnectFourComponent - should create
-5. TicTacToeComponent - 
-    handleError     - should log errors and return an observable of the given result
-    createGame      - should create a new game and return it
-    isDraw          - should return false for a non-draw game
-                    - should return true for a draw game
-    checkIfWon      - should return true if a player has won
-                    - should return false if a player has not won 
-    makeMove        - should return an Observable<Game>
-    displayBoard    - should display the game board with dashes
-    updateBoard     - should update the game board with a valid move
-                    - should not update the game board with an invalid move
-    getGame         - should retrieve a specific game
-                    - should retrieve all games
-    updateGame      - should send an HTTP PUT request to update a game on the server
-                    - should handle errors when updating a game     
-6. CheckersComponent - should create
 
 | Component | Method | Description |
 | --- | --- | --- |
