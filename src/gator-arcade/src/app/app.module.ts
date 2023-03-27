@@ -14,7 +14,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TicTacToeComponent } from './tic-tac-toe/tic-tac-toe.component';
 import { ConnectFourComponent } from './connect-four/connect-four.component';
 import { CheckersComponent } from './checkers/checkers.component';
-import { SolitaireComponent } from './solitaire/solitaire.component';
 import { WarComponent } from './war/war.component';
 import { PlayingCardsComponent } from './playing-cards/playing-cards.component';
 
@@ -24,7 +23,6 @@ import { PlayingCardsComponent } from './playing-cards/playing-cards.component';
     TicTacToeComponent,
     ConnectFourComponent,
     CheckersComponent,
-    SolitaireComponent,
     WarComponent,
     PlayingCardsComponent,
   ],
