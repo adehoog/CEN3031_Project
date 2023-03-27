@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
+import { PlayingCardsComponent } from '../playing-cards/playing-cards.component';
 
 @Component({
   selector: 'app-war',

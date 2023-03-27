@@ -1,0 +1,97 @@
+/* 
+Playing card .scss source:
+https://codepen.io/adamisom/pen/XmbYXj 
+*/
+
+figure {
+    margin: 0 auto;  
+  }
+  
+  .PlayingCard {
+    display: block;
+    position: relative;
+    border: 1px solid #000;
+    border-radius: .3em;
+  }
+  
+  .PlayingCard, .PlayingCard__symbols {
+    height: 12em;
+    width: 8em;
+  }
+  
+  .PlayingCard__caption {
+    /* only for screen readers */
+    /* https://css-tricks.com/places-its-tempting-to-use-display-none-but-dont/ */
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+  }
+  
+  .PlayingCard__half {
+    position: absolute;
+    top: .3em;
+    right: auto;
+    bottom: auto;
+    left: .3em;
+  }
+  
+  .PlayingCard__half-bottom {
+    top: auto;
+    right: .3em;
+    bottom: .3em;
+    left: auto;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  
+  .PlayingCard__rank {
+    font-size: larger;
+    font-weight: bolder;
+  }
+  
+  .PlayingCard__symbols {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+  }
+  
+  .PlayingCard__suit {
+    text-align: center;
+    font-size: 300%;
+  }
+  
+  .PlayingCard__symbols-rank1,
+  .PlayingCard__symbols-rank2,
+  .PlayingCard__symbols-rank3 {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  
+  .PlayingCard__symbols-rank1 .PlayingCard__suit,
+  .PlayingCard__symbols-rank11 .PlayingCard__suit,
+  .PlayingCard__symbols-rank12 .PlayingCard__suit,
+  .PlayingCard__symbols-rank13 .PlayingCard__suit {
+    font-size: 600%;
+  }
+  
+  .PlayingCard__symbols-rank4 .PlayingCard__suit,
+  .PlayingCard__symbols-rank5 .PlayingCard__suit,
+  .PlayingCard__symbols-rank6 .PlayingCard__suit {
+    flex-basis: 50%;
+  }
+  
+  .PlayingCard__suit-Hearts,
+  .PlayingCard__suit-Diamonds {
+    color: red;
+  }
+  
+  .PlayingCard__suit-Clubs,
+  .PlayingCard__suit-Spades {
+    color: black;
+  }

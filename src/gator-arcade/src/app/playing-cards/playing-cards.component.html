@@ -1,0 +1,14 @@
+  <button mat-raised-button color="primary" (click)="makeCard()">Draw Card</button>
+  <figure class="PlayingCard">
+    <div class="PlayingCard__half" aria-hidden="true">
+      <label class="PlayingCard__rank">{{rank}}</label>
+    </div>
+    <div class="PlayingCard__half PlayingCard__half-bottom" aria-hidden="true">
+      <label class="PlayingCard__rank">{{rank}}</label>
+    </div>
+    <figure class="PlayingCard__symbols" ng-class="'PlayingCard__symbols-rank' + value">
+      <figure class="PlayingCard__suit" ng-repeat="symbol in symbols track by $index" ng-class="'PlayingCard__suit-' + suit">
+        {{symbol}}
+      </figure>
+    </figure>
+  </figure>
