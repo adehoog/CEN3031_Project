@@ -16,6 +16,7 @@ import { ConnectFourComponent } from './connect-four/connect-four.component';
 import { CheckersComponent } from './checkers/checkers.component';
 import { SolitaireComponent } from './solitaire/solitaire.component';
 import { WarComponent } from './war/war.component';
+import { PlayingCardsComponent } from './playing-cards/playing-cards.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { WarComponent } from './war/war.component';
     CheckersComponent,
     SolitaireComponent,
     WarComponent,
+    PlayingCardsComponent,
   ],
   imports: [
     RouterModule,
