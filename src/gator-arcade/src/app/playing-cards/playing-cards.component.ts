@@ -35,13 +35,8 @@ export class PlayingCardsComponent {
   suit: string = '';
   symbol: string = '';
 
-  setCard(cardRank: string, cardSuit: string) {
+  makeCard(cardRank: string, cardSuit: string) {
     this.rank = cardRank;
-    this.suit = cardSuit;
-  }
-
-  makeCard() {
-    //this.rank = '10';
     //sets card value
     if(this.rank == 'A'){
       this.value = 1;
@@ -60,7 +55,7 @@ export class PlayingCardsComponent {
     }
 
     //sets suit symbol
-    //this.suit = 'Clubs';
+    this.suit = cardSuit;
     if(this.suit == "Hearts"){
       this.symbol = '\u2665';
     }

@@ -4,6 +4,7 @@ import { CheckersComponent } from './checkers/checkers.component';
 import { TicTacToeComponent } from './tic-tac-toe/tic-tac-toe.component';
 import { ConnectFourComponent } from './connect-four/connect-four.component';
 import { WarComponent } from './war/war.component';
+import { BlackjackComponent } from './blackjack/blackjack.component';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'checkers', component: CheckersComponent },
   { path: 'connect-four', component: ConnectFourComponent },
   { path: 'war', component: WarComponent },
+  { path: 'blackjack', component: BlackjackComponent },
   { path: '', redirectTo: '/tic-tac-toe', pathMatch: 'full' }
 ];
 

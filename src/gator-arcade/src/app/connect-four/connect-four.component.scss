@@ -1,0 +1,67 @@
+.board {
+    border: solid 2px black;
+    margin: 0px auto;
+    max-width: fit-content;
+    background-color: rgb(45, 187, 235);
+}
+
+.row {
+    display: table-row;
+}
+
+.cell {
+  width:100px;
+	height:100px;
+	display:table-cell;
+	border-bottom:1px solid #999;
+	border-right:1px solid #999;
+    border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 48px;
+  font-weight: bold;
+	cursor:pointer;
+  line-height: 136px;
+}
+
+
+.cell:focus {
+    background-color: red;
+}
+
+.cell:hover {
+  background-color:rgb(255, 115, 0);
+}
+
+.cell:active {
+  background-color:blue;
+}
+
+.reset-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.reset-button button {
+  margin: 0;
+}
+
+.mat-icon-button {
+    background-color: blue;
+    border-color: black;
+    &:hover {
+      background-color: red;
+      border-color: yellow;
+    }
+    &:active {
+      background-color: purple;
+      border-color: pink;
+    }
+    &:focus {
+      background-color: green;
+      border-color: orange;
+    }
+  }
+  

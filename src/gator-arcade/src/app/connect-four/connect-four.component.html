@@ -1,1 +1,9 @@
 <p>connect-four works!</p>
+<h1 style="text-align: center;">Connect Four</h1>
+<div class="board" style="border-collapse: collapse;">
+  <div class="row" *ngFor="let row of board; let x = index">
+    <div id="cell" class="cell" *ngFor="let cell of row; let y = index" (click)="makeMove(x, y, cell)">
+      {{ cell }}
+    </div>
+  </div>
+</div>
