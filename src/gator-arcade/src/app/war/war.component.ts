@@ -7,5 +7,6 @@ import { PlayingCardsComponent } from '../playing-cards/playing-cards.component'
   styleUrls: ['./war.component.scss']
 })
 export class WarComponent {
-
+  cardCount_p1: number = 0;
+  cardCount_p2: number = 0;
 }

@@ -3,7 +3,8 @@
 </mat-toolbar>
 
 <div class="container">
-  <mat-card class="game-card">
+  <div class="game-list">
+      <mat-card class="game-card">
     <img src="../assets/Checkers.png" alt="Checkers">
     <mat-card-title>Checkers</mat-card-title>
     <mat-card-content>
@@ -42,5 +43,11 @@
       <button mat-raised-button routerLink="/war">Play</button>
     </mat-card-content>
   </mat-card>
+  <div>
+</div>
 
-<router-outlet></router-outlet>
+<mat-toolbar color="primary"></mat-toolbar>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+

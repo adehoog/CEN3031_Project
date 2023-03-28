@@ -1,4 +1,5 @@
 //@import "~material-icons/iconfont/material-icons.css"
+
 mat-toolbar {
     display: flex;
     justify-content: center;
@@ -6,6 +7,10 @@ mat-toolbar {
   }
 
 .container {
+    display: block;
+  }
+
+  .game-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

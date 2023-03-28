@@ -1,0 +1,18 @@
+.war {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.card_count{
+    text-align: center;
+}
+
+.card_count p {
+    position: absolute;
+    font-size: x-large;
+    margin-top: 50px;
+    margin-left: 2%;
+}
