@@ -1,1 +1,15 @@
-<p>checkers works!</p>
+<h1 style="text-align: center;">Checkers</h1>
+<button (click)="movePiece()">Move Piece</button>
+<div class="board">
+  <div *ngFor="let col of [0, 1, 2, 3, 4, 5, 6, 7]" class="row">
+    <div *ngFor="let row of [0, 1, 2, 3, 4, 5, 6, 7]" 
+         class="square" 
+         [ngClass]="{ 'light': (row + col) % 2 === 0, 'dark': (row + col) % 2 === 1, 'selected-square': selectedSquare?.row === row && selectedSquare?.col === col }"
+         (click)="onSquareClick(row, col)">
+      <div *ngIf="(row < 3 || row > 4) && (row + col) % 2 === 1" 
+           class="piece" 
+           [ngClass]="{ 'red': row < 3, 'black': row > 4, 'selected-piece': selectedPiece?.row === row && selectedPiece?.col === col }"
+           (click)="onPieceClick(row, col)"></div>
+    </div>
+  </div>
+</div>
