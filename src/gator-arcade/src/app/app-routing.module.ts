@@ -8,6 +8,7 @@ import { BlackjackComponent } from './blackjack/blackjack.component';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
+  //{ path: '', component: AppComponent },
   { path: 'tic-tac-toe', component: TicTacToeComponent },
   { path: 'checkers', component: CheckersComponent },
   { path: 'connect-four', component: ConnectFourComponent },
