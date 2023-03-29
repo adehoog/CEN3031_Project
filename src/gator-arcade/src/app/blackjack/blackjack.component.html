@@ -1,2 +1,22 @@
-<p>blackjack works!</p>
-<app-playing-cards></app-playing-cards>
+<div class="blackjack">
+    <div class="player">
+        <p>Your current card total: {{roundTotal}}</p> 
+        <br/>
+        <app-playing-cards></app-playing-cards>
+        <div class="betting">
+            <button (click)="decreaseBet()">-</button>
+            <p>Bet: {{currentBet}}</p>
+            <button (click)="increaseBet()">+</button>
+        </div>
+    </div>
+    
+    <div class="bettingPool">
+        <p>Pool: {{bettingPool}}</p>
+    </div>
+    
+    <div class="dealer">
+        <img src="../assets/red_card_back.png"/>
+        <p>Dealer's bet: {{dealerBet}}</p>
+    </div>
+</div>
+

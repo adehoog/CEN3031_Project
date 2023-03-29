@@ -1,0 +1,21 @@
+.blackjack {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.betting {
+    display: block;
+    text-align: center;
+}
+
+.betting button {
+    display: inline;
+}
+
+.betting p {
+    display: inline;
+    padding: 10px;
+}

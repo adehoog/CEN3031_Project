@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 70px;
 }
 
 .card_count{
@@ -12,7 +12,12 @@
 
 .card_count p {
     position: absolute;
-    font-size: x-large;
+    font-size: large;
     margin-top: 50px;
-    margin-left: 2%;
+    margin-left: 10px;
+}
+
+img {
+    margin: auto;
+    width: 150%;
 }
