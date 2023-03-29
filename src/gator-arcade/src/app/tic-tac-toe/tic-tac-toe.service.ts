@@ -40,7 +40,7 @@ export class TicTacToeService {
   private game: Game = { b: { board: [['', '', ''], ['', '', ''], ['', '', '']] }, p: { name: '', marker: '' } };
 
 
-  public apiUrl = 'http://localhost:3000/games';
+  public apiUrl = 'http://localhost:4200/api';
 
   constructor(private http: HttpClient) { }
 
