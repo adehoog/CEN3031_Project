@@ -14,7 +14,7 @@ type card struct {
 }
 
 type deck struct {
-	deck [52]card
+	deck []card
 }
 
 type player struct {
@@ -28,7 +28,7 @@ type game struct {
 }
 
 // Initializes all cards in the deck and shuffles it before returning
-func initializeDeck(g game) {
+func initializeDeck(g game) game {
 	newCard := card{}
 	for i := 0; i < 52; i++ {
 		switch i % 4 {
@@ -79,62 +79,77 @@ func initializeDeck(g game) {
 			newCard.numberRank = 12
 			newCard.nameRank = "Queen"
 		case 0:
-			newCard.numberRank = 0
+			newCard.numberRank = 13
 			newCard.nameRank = "King"
 		}
-		g.deck_.deck[i] = newCard
+		g.deck_.deck = append(g.deck_.deck, newCard)
 	}
-	shuffleDeck(g)
-}
 
-// Utilizes the Fisher–Yates shuffle algorithm to shuffle the deck
-func shuffleDeck(g game) {
+	// Utilizes the Fisher–Yates shuffle algorithm to shuffle the deck
 	rand.Seed(time.Now().UnixNano())
 	for i := len(g.deck_.deck) - 1; i > 0; i-- {
 		j := rand.Intn(i + 1)
 		g.deck_.deck[i], g.deck_.deck[j] = g.deck_.deck[j], g.deck_.deck[i]
 	}
+	return g
 }
 
 // Deals player a card from the top of the deck
 func deal(g game) card {
-	return g.deck_.deck[0]
+	index := 0
+	for g.deck_.deck[index].nameRank == "NULL" {
+		index++
+	}
+
+	newCard := g.deck_.deck[index]
+	g.deck_.deck[index].nameRank = "NULL"
+	return newCard
 }
 
-func calculateHand(g game, p player, d player) {
+func calculateHand(g game, p player, d player) game {
 
 	playerHand := 0
 	dealerHand := 0
 	sum := 0
 
-	for i := 1; i < len(g.player_.hand); i++ {
+	for i := 0; i < len(g.player_.hand); i++ {
 		sum += g.player_.hand[i].numberRank
 	}
 
-	if g.player_.name == "Player" {
-		for i := 1; i < len(d.hand); i++ {
-			dealerHand += d.hand[i].numberRank
-		}
-	} else {
-		for i := 1; i < len(p.hand); i++ {
-			playerHand += p.hand[i].numberRank
-		}
+	for i := 0; i < len(d.hand); i++ {
+		dealerHand += d.hand[i].numberRank
+	}
+	for i := 0; i < len(p.hand); i++ {
+		playerHand += p.hand[i].numberRank
 	}
 
-	if sum >= 21 {
+	if sum > 21 {
 
 		fmt.Println("Player's hand: ", playerHand)
 		fmt.Println("Dealer's hand: ", dealerHand)
 
 		if g.player_.name == "Player" {
+			if dealerHand > 21 {
+				fmt.Println("Game over! You both bust!")
+				os.Exit(0)
+			}
 			fmt.Println("Game over, dealer wins!")
 			os.Exit(0)
 		} else {
+			if playerHand > 21 {
+				fmt.Println("Game over! You both bust!")
+				os.Exit(0)
+			}
 			fmt.Println("Game over, player wins!")
 			os.Exit(0)
 		}
+	} else if playerHand == 21 && dealerHand == 21 {
+		fmt.Println("Player's hand: ", playerHand)
+		fmt.Println("Dealer's hand: ", dealerHand)
+		fmt.Println("It's a tie!")
 	} else if sum == 21 {
 
+		fmt.Println("Blackjack!")
 		fmt.Println("Player's hand: ", playerHand)
 		fmt.Println("Dealer's hand: ", dealerHand)
 
@@ -153,31 +168,43 @@ func calculateHand(g game, p player, d player) {
 			fmt.Scanln(&answer)
 			if answer == "Y" {
 				newCard := deal(g)
+				fmt.Println("You drew ", newCard.nameRank, " of ", newCard.suit)
+				p.hand = append(p.hand, newCard)
 				g.player_.hand = append(g.player_.hand, newCard)
-				calculateHand(g, p, d)
+				g = calculateHand(g, p, d)
 			} else {
-				return
+				g.player_ = d
+				g = calculateHand(g, p, d)
 			}
 		} else {
-			if sum >= 16 {
+			if sum <= 16 {
 				newCard := deal(g)
 				g.player_.hand = append(g.player_.hand, newCard)
-				calculateHand(g, p, d)
+				d.hand = append(d.hand, newCard)
+				g = calculateHand(g, p, d)
 			}
-			return
+			return g
 		}
 	}
+	return g
 }
 
 // compares player's and dealer's hands if they are both < 21
 func compareHands(g game, p player, d player) {
+
 	playerHand := 0
 	dealerHand := 0
+	sum := 0
 
-	for i := 1; i < len(d.hand); i++ {
+	for i := 0; i < len(g.player_.hand); i++ {
+		sum += g.player_.hand[i].numberRank
+	}
+
+	for i := 0; i < len(d.hand); i++ {
 		dealerHand += d.hand[i].numberRank
 	}
-	for i := 1; i < len(p.hand); i++ {
+
+	for i := 0; i < len(p.hand); i++ {
 		playerHand += p.hand[i].numberRank
 	}
 
@@ -186,8 +213,10 @@ func compareHands(g game, p player, d player) {
 
 	if dealerHand > playerHand {
 		fmt.Println("Dealer wins!")
-	} else {
+	} else if playerHand > dealerHand {
 		fmt.Println("Player wins!")
+	} else {
+		fmt.Println("It's a tie!")
 	}
 	os.Exit(0)
 }
@@ -200,25 +229,23 @@ func main() {
 	game := game{currentPlayer, deck}
 	dealer.name = "Dealer"
 	personPlayer.name = "Player"
-	initializeDeck(game)
+	game = initializeDeck(game)
 
 	// two cards for each player are drawn
 	playerHand := deal(game)
 	fmt.Println("You drew: ", playerHand.nameRank, " of ", playerHand.suit)
-	personPlayer.hand[0] = playerHand
+	personPlayer.hand = append(personPlayer.hand, playerHand)
 	playerHand = deal(game)
 	fmt.Println("You drew: ", playerHand.nameRank, " of ", playerHand.suit)
-	personPlayer.hand[1] = playerHand
+	personPlayer.hand = append(personPlayer.hand, playerHand)
 	dealerHand := deal(game)
-	dealer.hand[0] = dealerHand
+	dealer.hand = append(dealer.hand, dealerHand)
 	dealerHand = deal(game)
-	dealer.hand[1] = dealerHand
+	dealer.hand = append(dealer.hand, dealerHand)
 
-	// player's turn first, then dealer's
+	// player's turn first
 	game.player_ = personPlayer
-	calculateHand(game, personPlayer, dealer)
-	game.player_ = dealer
-	calculateHand(game, personPlayer, dealer)
+	game = calculateHand(game, personPlayer, dealer)
 
 	// compare final hands to determine winner if neither player nor the dealer won or busted
 	compareHands(game, personPlayer, dealer)
