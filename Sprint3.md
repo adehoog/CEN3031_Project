@@ -4,7 +4,33 @@
 
 ### **Unit Tests for Frontend**
 
-
+| Component | Method | Description |
+| --- | --- | --- |
+| WarComponent | initDeck | should create a mock deck object and hand object |
+|  | initHands | should be used to test the hand property of p1 and p2 |
+|  | draw | should test drawing cards, comparing values, and updating the game |
+|  | handleTie | should test that the method adds three cards from each player to a new hand |
+|  | playGame | should repeatedly call draw() until one player has no cards left |
+|  | startGame | should check that initDeck() and playGame() services are initialized |
+|  | playAgain | should check reset game state by checking startGame() service |
+| AppComponent |  | should create the app, should have as title 'gator-arcade' |
+| SolitaireComponent |  | should create |
+| ConnectFourComponent |  | should create |
+| TicTacToeComponent | handleError | should log errors and return an observable of the given result |
+|  | createGame | should create a new game and return it |
+|  | isDraw | should return false for a non-draw game |
+|  |  | should return true for a draw game |
+|  | checkIfWon | should return true if a player has won |
+|  |  | should return false if a player has not won |
+|  | makeMove | should return an Observable<Game> |
+|  | displayBoard | should display the game board with dashes |
+|  | updateBoard | should update the game board with a valid move |
+|  |  | should not update the game board with an invalid move |
+|  | getGame | should retrieve a specific game |
+|  |  | should retrieve all games |
+|  | updateGame | should send an HTTP PUT request to update a game on the server |
+|  |  | should handle errors when updating a game |
+| CheckersComponent |  | should create |
 
 ### **Unit Tests for Backend**
 
