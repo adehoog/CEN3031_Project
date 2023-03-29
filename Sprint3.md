@@ -6,13 +6,13 @@
 
 | Component | Method | Description |
 | --- | --- | --- |
-| WarComponent | initDeck | should create a mock deck object and hand object |
-|  | initHands | should be used to test the hand property of p1 and p2 |
-|  | draw | should test drawing cards, comparing values, and updating the game |
-|  | handleTie | should test that the method adds three cards from each player to a new hand |
+| WarComponent | initDeck | should initialize the deck and call initHands |
+|  | initHands | should initialize the hands of the two players |
+|  | draw | should correctly handle drawing and compare the values of cards |
+|  | handleTie | should add three cards from each player to a new hand and call draw() |
 |  | playGame | should repeatedly call draw() until one player has no cards left |
-|  | startGame | should check that initDeck() and playGame() services are initialized |
-|  | playAgain | should check reset game state by checking startGame() service |
+|  | startGame | should initialize the deck and call playGame() |
+|  | playAgain | should reset the game state and call startGame() |
 | AppComponent |  | should create the app, should have as title 'gator-arcade' |
 | SolitaireComponent |  | should create |
 | ConnectFourComponent |  | should create |
