@@ -56,11 +56,22 @@ updateBoard(row: number, col: number) {
   }
 }
 
-getColor() {
-  return {
-    backgroundColor: this.currentColor
-  }
+reset() {
+  this.board = [      
+    ['', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '']
+  ];
+  this.hasWon = false;
+  this.hasLost = false;
+  this.isTied = false;
+  this.gameState = 'IN PROGRESS';
+  this.winner = '';
+  this.currentPlayer = 'r';
+  this.currentColor = 'white';
 }
-
 }
 

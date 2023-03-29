@@ -13,21 +13,15 @@
   width:100px;
 	height:100px;
 	display:table-cell;
+  background-color: white;
 	border-bottom:1px solid #999;
 	border-right:1px solid #999;
     border-radius: 50%;
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 48px;
   font-weight: bold;
 	cursor:pointer;
-  line-height: 136px;
-}
-
-
-.cell:focus {
-    background-color: red;
 }
 
 .cell:hover {
