@@ -1,6 +1,10 @@
 ### **Detail of Work Completed in Sprint 3**
 
+For the Gator Arcade, we added visual elements to the website including images and tiles for each game offered on the site. We also implemented a user-friendly play button feature that allows users to easily launch their desired game. Upon clicking the play button, the corresponding game opens at the bottom of the page underneath the game tiles, providing an intuitive and seamless user experience.
 
+Created the war.service.ts file that contains the implementation of the war service. The functions initDeck, initHands, draw, handleTie, playGame, startGame, and playAgain are functions that define the behaviors of the game war.
+
+Created the war.spec.ts file which is the testing file that tests the war.service.ts file functions using Karma automated testing software to test the functions in the browser. This file contains a suite of tests that ensure the war.service.ts file functions are working as expected, as well as providing a description of the expected behavior of each function.
 
 ### **Unit Tests for Frontend**
 
@@ -14,7 +18,7 @@
 |  | startGame | should initialize the deck and call playGame() |
 |  | playAgain | should reset the game state and call startGame() |
 | AppComponent |  | should create the app, should have as title 'gator-arcade' |
-| SolitaireComponent |  | should create |
+| BlackjackComponent |  | should create |
 | ConnectFourComponent |  | should create |
 | TicTacToeComponent | handleError | should log errors and return an observable of the given result |
 |  | createGame | should create a new game and return it |
