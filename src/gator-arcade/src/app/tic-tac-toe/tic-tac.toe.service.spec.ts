@@ -43,7 +43,7 @@ describe('TicTacToeService', () => {
         expect(game).toEqual(dummyGame);
       });
 
-      const req = httpMock.expectOne('http://localhost:3000/games');
+      const req = httpMock.expectOne('http://localhost:4200/api');
       expect(req.request.method).toBe('POST');
       req.flush(dummyGame);
     });
@@ -71,7 +71,7 @@ describe('TicTacToeService', () => {
         expect(game).toEqual(dummyGame);
       });
 
-      const req = httpMock.expectOne(`http://localhost:3000/games/${id}`);
+      const req = httpMock.expectOne(`http://localhost:4200/api/${id}`);
       expect(req.request.method).toBe('GET');
       req.flush(dummyGame);
     });
@@ -110,7 +110,7 @@ describe('TicTacToeService', () => {
         expect(games).toEqual(dummyGames);
       });
 
-      const req = httpMock.expectOne('http://localhost:3000/games');
+      const req = httpMock.expectOne('http://localhost:4200/api');
       expect(req.request.method).toBe('GET');
       req.flush(dummyGames);
     });
