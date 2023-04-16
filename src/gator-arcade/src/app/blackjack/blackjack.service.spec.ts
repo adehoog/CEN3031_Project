@@ -231,7 +231,7 @@ describe("BlackjackService", () => {
   });
 
   describe('calculateHand', () => {
-    it('should update the player and dealer hands and total money', () => {
+    it('should update the player and dealer hands', () => {
       service.playerHand = [{suit: 'hearts', val: 10, name: '10'}, {suit: 'diamonds', val: 4, name: '4'}];
       service.dealerHand = [{suit: 'clubs', val: 11, name: 'J'}, {suit: 'spades', val: 5, name: '5'}];
       service.currentPlayer = 'Player';

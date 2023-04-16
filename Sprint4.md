@@ -13,7 +13,16 @@ Fixed unit tests.
 |  | startGame | should initialize the deck and call playGame() |
 |  | playAgain | should reset the game state and call startGame() |
 | AppComponent |  | should create the app, should have as title 'gator-arcade' |
-| BlackjackComponent |  | should create |
+| BlackjackComponent | initializeDeck | should initialize the deck and shuffle it |
+|  |  | should handle errors |
+|  | shuffleDeck | should shuffle the deck |
+|  | deal | should deal a card from the top of the deck |
+|  |  | should throw an error when the deck is empty |
+|  | initHands | should initialize player and dealer hands |
+|  |  | should handle errors |
+|  | calculateHand | should update the player and dealer hands |
+|  | compareHands | should correctly determine the winner |
+|  | handleError | should return an Observable with a default value on error |
 | ConnectFourComponent |  | should create |
 | TicTacToeComponent | handleError | should log errors and return an observable of the given result |
 |  | createGame | should create a new game and return it |
