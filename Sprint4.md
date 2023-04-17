@@ -41,8 +41,36 @@ Fixed unit tests.
 | CheckersComponent |  | should create |
 
 ### **Unit Tests for Backend**
+**Tic-Tac-Toe**
 
+TestDisplayBoard - should test that the tic-tac-toe board is properly displayed on the screen
+  
+TestUpdateBoard - should test that the tic-tac-toe board is properly updated once a player makes a move
+  
+TestCheckIfWon - should test that the program recognizes when a player wins the game
+  
+TestIsDraw - should test that the program recognizes when the game is a draw
+  
+**War**
 
+TestHandleTie_DepthOne - should test that when players draw two cards of the same value, the winner receives the correct number of cards.
+  
+TestHandleTie_DepthTwo - should test that if two players tie, then tie again in the resolution of the initial tie, the winner still receives the correct number of cards.
+  
+TestPlayGame_Draw - should test that given identical decks that were not shuffled, a draw is reached after 5000 rounds.
+  
+TestInitDeck_WinnerHasAllCards - should test that upon the game's end, there are still 52 cards (no leakage).
+  
+**Blackjack**
+  
+TestInitializeDeck - should test that the card deck is correctly initialized with all 52 cards present
+  
+TestDeal - should test that a valid, random card is dealt to a player or dealer
+  
+TestCalculateHand - should test that the function calculating the player's current hand is accurate
+  
+TestCompareHands - should test that the function calculating and comparing the player's and dealer's hands is accurate
+  
 
 ### **Backend API Documentation**
 Introduction
