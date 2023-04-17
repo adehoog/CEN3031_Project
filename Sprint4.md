@@ -61,6 +61,16 @@ TestPlayGame_Draw - should test that given identical decks that were not shuffle
   
 TestInitDeck_WinnerHasAllCards - should test that upon the game's end, there are still 52 cards (no leakage).
   
+**Blackjack**
+  
+TestInitializeDeck - should test that the card deck is correctly initialized with all 52 cards present
+  
+TestDeal - should test that a valid, random card is dealt to a player or dealer
+  
+TestCalculateHand - should test that the function calculating the player's current hand is accurate
+  
+TestCompareHands - should test that the function calculating and comparing the player's and dealer's hands is accurate
+  
 
 ### **Backend API Documentation**
 Introduction
