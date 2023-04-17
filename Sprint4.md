@@ -38,7 +38,28 @@ Fixed unit tests.
 |  |  | should retrieve all games |
 |  | updateGame | should send an HTTP PUT request to update a game on the server |
 |  |  | should handle errors when updating a game |
-| CheckersComponent |  | should create |
+| CheckersComponent | initGame | should initialize the game board |
+|  | getPieceColor | should return "black" for a black piece at row 0 and column 1 |
+|  |  | should return "red" for a red piece at row 7 and column 2 |
+|  |  | should return null for an empty square at row 3 and column 3 |
+|  | onSquareClick | should select a piece when a square with a piece of the current player is clicked |
+|  |  | should not select a piece when a square with a piece of the opposite player is clicked |
+|  |  | should move a selected piece to an empty square |
+|  |  | should not move a selected piece to an occupied square |
+|  | movePiece | should move a piece to the target square and switch to the other player\'s turn |
+|  | isValidMove | should return false if the selected piece is null |
+|  |  | should return false if the target square is not on the board |
+|  |  | should return false if the target square is already occupied by another piece |
+|  |  | should return false if the piece is moving forward and is not a king |
+|  |  | should return false if the piece is moving backward and is not a king |
+|  |  | should return false if the move is not a valid capture move |
+|  |  | should return true if the move is a valid capture move |
+|  |  | should return false if the move is not a valid non-capture move |
+|  |  | should return true if the move is a valid non-capture move |
+|  | isGameOver | should return true when one player has no pieces left |
+|  |  | should return false when both players have pieces left |
+|  | countPieces | should return the number of pieces of the given color on the board |
+|  | getCurrentPlayerColor | should return the color of the current player |
 
 ### **Unit Tests for Backend**
 **Tic-Tac-Toe**
