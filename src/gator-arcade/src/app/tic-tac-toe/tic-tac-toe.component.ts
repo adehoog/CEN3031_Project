@@ -31,6 +31,7 @@ makeMove(x: number, y: number, cell: string) {
     this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
     this.cellClicked = true;
     this.change.emit(this.cellClicked);
+    this.checkResult();
   }
 }
 
@@ -110,5 +111,6 @@ reset() {
     ['', '', '']
   ];
   this.currentPlayer = 'X';
+  this.gameState = 'IN PROGRESS';
 }
 }

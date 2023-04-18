@@ -1,15 +1,23 @@
 <h1 style="text-align: center;">Checkers</h1>
-<button (click)="movePiece()">Move Piece</button>
+<div [ngSwitch]="currentPlayer">
+  <div *ngSwitchCase="'red'" class="message">
+    <h2 style="text-align: center;">Red's Turn</h2>
+  </div>
+  <div *ngSwitchCase="'black'" class="message">
+    <h2 style="text-align: center;">Black's Turn</h2>
+  </div>
+</div>
+
 <div class="board">
   <div *ngFor="let col of [0, 1, 2, 3, 4, 5, 6, 7]" class="row">
     <div *ngFor="let row of [0, 1, 2, 3, 4, 5, 6, 7]" 
          class="square" 
          [ngClass]="{ 'light': (row + col) % 2 === 0, 'dark': (row + col) % 2 === 1, 'selected-square': selectedSquare?.row === row && selectedSquare?.col === col }"
          (click)="onSquareClick(row, col)">
-      <div *ngIf="(row < 3 || row > 4) && (row + col) % 2 === 1" 
-           class="piece" 
-           [ngClass]="{ 'red': row < 3, 'black': row > 4, 'selected-piece': selectedPiece?.row === row && selectedPiece?.col === col }"
-           (click)="onPieceClick(row, col)"></div>
+      <div class="piece"
+          [style.background-color]="board[row][col].piece ? board[row][col].piece.color : ''"
+          [ngClass]="{'selected-piece': selectedPiece?.row === row && selectedPiece?.col === col}"
+      ></div>
     </div>
   </div>
 </div>

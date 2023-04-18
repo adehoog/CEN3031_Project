@@ -1,13 +1,22 @@
 <div class="war">
     <div class="card_count">
-        <p>Num cards: {{cardCount_p1}}</p>
+        <p>Num cards: {{cardCount_p}}</p>
         <img src="../assets/blank_deck.png"/>
     </div>
-    <app-playing-cards></app-playing-cards>
+    <button [disabled]="ableDrawCard()" (click)="drawCard()">
+        <img src="../assets/blue_deck.png"/>
+        <p>Draw Card</p>
+      </button>
+    <app-playing-cards #pCard></app-playing-cards>
+    
+    <div>
+        <p>Round Winner: {{roundwinner}}</p>
+        <button [disabled]="goToWar()" (click)="handleTie()">Go to war!</button>
+    </div>
 
-    <app-playing-cards></app-playing-cards>
+    <app-playing-cards #npcCard></app-playing-cards>
     <div class="card_count">
-        <p> Num cards: {{cardCount_p2}}</p>
+        <p> Num cards: {{cardCount_npc}}</p>
         <img src="../assets/blank_deck.png"/>
     </div>
 </div>
