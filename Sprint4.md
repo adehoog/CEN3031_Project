@@ -94,7 +94,7 @@ TestCompareHands - should test that the function calculating and comparing the p
   
 
 ### **Backend API Documentation**
-Introduction
+**Introduction**
 
 Gator Arcade is a collection of classic board and card games such as tic-tac-toe, connect four, checkers, hangman, blackjack, War, and Go Fish. This documentation will be going over the backend work for tic-tac-toe and War specifically.
 
