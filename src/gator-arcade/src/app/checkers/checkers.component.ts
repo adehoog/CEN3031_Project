@@ -46,6 +46,8 @@ export class CheckersComponent implements OnInit {
 
   onSquareClick(row: number, col: number) {
     console.log(`clicked on square: (${row}, ${col})`);
+    this.clickedCol = col;
+    this.clickedRow = row;
     const { selectedPiece, currentPlayer } = this;
     const pieceColor = selectedPiece ? this.getPieceColor(selectedPiece.row, selectedPiece.col) : null;
   
@@ -68,10 +70,6 @@ export class CheckersComponent implements OnInit {
       }
     }
   }
-  
-  
-  
-
 
   onPieceClick(row: number, col: number): void {
     const piece = this.board[row][col].piece;
@@ -123,14 +121,14 @@ isValidMove(targetSquare: { row: number, col: number }): boolean {
       return false;
     }
     // If it's a valid capture move, call movePiece()
-    this.movePiece();
+    //this.movePiece();
     return true;
   }
 
   // Check if the move is a valid non-capture move
   if (Math.abs(targetRow - sourceRow) === 1 && Math.abs(targetCol - sourceCol) === 1) {
     // If it's a valid non-capture move, call movePiece()
-    this.movePiece();
+    //this.movePiece();
     return true;
   }
 
@@ -162,10 +160,13 @@ movePiece(): void {
   if (!this.isValidMove({ row: targetRow, col: targetCol })) {
     return;
   }
+  console.log(targetRow + ", " + targetCol);
 
   // Update the board with the new piece positions
   this.board[targetRow][targetCol].piece = this.board[sourceRow][sourceCol].piece;
   this.board[sourceRow][sourceCol].piece = null;
+
+  console.log(this.board[targetRow][targetCol].piece);
 
   // Check for a capture move
   if (Math.abs(targetRow - sourceRow) === 2 && Math.abs(targetCol - sourceCol) === 2) {

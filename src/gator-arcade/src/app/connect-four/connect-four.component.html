@@ -1,9 +1,29 @@
 <h1 style="text-align: center;">Connect Four</h1>
+<div [ngSwitch]="currentPlayer">
+  <div *ngSwitchCase="'r'" class="message">
+    <h2 style="text-align: center;">Red's Turn</h2>
+  </div>
+  <div *ngSwitchCase="'y'" class="message">
+    <h2 style="text-align: center;">Yellow's Turn</h2>
+  </div>
+</div>
+
 <div class="board" style="border-collapse: collapse;">
   <div class="row" *ngFor="let row of board; let x = index">
     <div class="cell" *ngFor="let cell of row; let y = index" (click)="makeMove(x, y, cell)" [style.background-color]="cell == '' ? 'white' : (cell == 'r' ? 'red' : 'yellow')">
-      {{ cell }}
     </div>
+  </div>
+</div>
+
+<div [ngSwitch]="gameState">
+  <div *ngSwitchCase="'WON'" class="message">
+    <h2 style="text-align: center;">Game won by {{ winner }}!</h2>
+  </div>
+  <div *ngSwitchCase="'LOST'" class="message">
+    <h2 style="text-align: center;">Game lost!</h2>
+  </div>
+  <div *ngSwitchCase="'DRAW'" class="message">
+    <h2 style="text-align: center;">Game tied!</h2>
   </div>
 </div>
 

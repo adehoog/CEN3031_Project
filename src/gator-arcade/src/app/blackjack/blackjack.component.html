@@ -1,17 +1,30 @@
 <div class="blackjack">
+    <div>
+        <p>Your current card total: {{roundTotal}}</p>
+        <button (click)="drawCard()" [disabled]="allowBetting()">
+            <img src="../assets/blue_deck.png"/>
+            <p>Draw Card</p>
+        </button>
+    </div>
     <div class="player">
-        <p>Your current card total: {{roundTotal}}</p> 
+        <p style="text-align: center;">Round Winner: {{winner}}</p> 
+        <button (click)="gameReset()" [disabled]="showPlayAgain()">Play Again</button>
         <br/>
         <app-playing-cards></app-playing-cards>
         <div class="betting">
-            <button (click)="decreaseBet()">-</button>
+            <button (click)="decreaseBet()" [disabled]="allowBetting()">-</button>
             <p>Bet: {{currentBet}}</p>
-            <button (click)="increaseBet()">+</button>
+            <button (click)="increaseBet()" [disabled]="allowBetting()">+</button>
+            <br>
+            <button (click)="stand()">Stand</button>
+            <br>
+            <p style="text-align: center;">Your money: {{totalMoney}}</p> 
         </div>
     </div>
     
     <div class="bettingPool">
-        <p>Pool: {{bettingPool}}</p>
+        <h2 style="text-align: center;">Pool:</h2>
+        <h2 style="text-align: center;">{{bettingPool}}</h2>
     </div>
     
     <div class="dealer">

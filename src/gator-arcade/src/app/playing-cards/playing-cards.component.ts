@@ -35,6 +35,7 @@ export class PlayingCardsComponent {
   suit: string = '';
   symbol: string = '';
 
+
   makeCard(cardRank: string, cardSuit: string) {
     this.rank = cardRank;
     //sets card value
