@@ -23,7 +23,18 @@ Fixed unit tests.
 |  | calculateHand | should update the player and dealer hands |
 |  | compareHands | should correctly determine the winner |
 |  | handleError | should return an Observable with a default value on error |
-| ConnectFourComponent |  | should create |
+| ConnectFourComponent |  | should be create |
+|  | makeMove | should update the board with player marker and switch player on valid move |
+|  |  | should not update board on invalid move and not switch player |
+|  |  | should not update board on out of bounds move and not switch player |
+|  | checkWin | should detect a horizontal win |
+|  |  | should detect a vertical win |
+|  |  | should detect a diagonal win from top-left to bottom-right |
+|  |  | should detect a diagonal win from bottom-left to top-right |
+|  |  | should detect a tie |
+|  | reset | should reset the board to an empty state |
+|  |  | should reset the player and color to the initial state |
+|  |  | should reset the game state to IN PROGRESS |
 | TicTacToeComponent | handleError | should log errors and return an observable of the given result |
 |  | createGame | should create a new game and return it |
 |  | isDraw | should return false for a non-draw game |
