@@ -7,18 +7,18 @@
         </button>
     </div>
     <div class="player">
-        <p style="text-align: center;">Round Winner: {{winner}}</p> 
-        <button (click)="gameReset()" [disabled]="showPlayAgain()">Play Again</button>
-        <br/>
+        <h2 style="text-align: center;">Round Winner: {{winner}}</h2> 
         <app-playing-cards></app-playing-cards>
         <div class="betting">
-            <button (click)="decreaseBet()" [disabled]="allowBetting()">-</button>
-            <p>Bet: {{currentBet}}</p>
-            <button (click)="increaseBet()" [disabled]="allowBetting()">+</button>
-            <br>
-            <button (click)="stand()">Stand</button>
-            <br>
-            <p style="text-align: center;">Your money: {{totalMoney}}</p> 
+            <div class="betChange">
+                <button (click)="decreaseBet()" [disabled]="allowBetting()">-</button>
+                <p>Bet: {{currentBet}}</p>
+                <button (click)="increaseBet()" [disabled]="allowBetting()">+</button>
+            </div>
+            <div>
+                <h2 style="text-align: center;">Your money: {{totalMoney}}</h2> 
+            </div>
+            <button mat-raised-button color="primary" (click)="stand()" [disabled]="allowBetting()">Stand</button>
         </div>
     </div>
     
@@ -31,5 +31,10 @@
         <img src="../assets/red_card_back.png"/>
         <p>Dealer's bet: {{dealerBet}}</p>
     </div>
+</div>
+
+
+<div>
+    <button mat-raised-button color="primary" (click)="gameReset()" [disabled]="showPlayAgain()">Play Again</button>
 </div>
 

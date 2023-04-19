@@ -9,9 +9,9 @@
       </button>
     <app-playing-cards #pCard></app-playing-cards>
     
-    <div>
-        <p>Round Winner: {{roundwinner}}</p>
-        <button [disabled]="goToWar()" (click)="handleTie()">Go to war!</button>
+    <div class="round_stuff">
+        <h2>Round Winner: {{roundwinner}}</h2>
+        <button mat-raised-button color="primary" [disabled]="goToWar()" (click)="handleTie()">Go to war!</button>
     </div>
 
     <app-playing-cards #npcCard></app-playing-cards>

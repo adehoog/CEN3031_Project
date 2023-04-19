@@ -17,8 +17,8 @@ export class WarComponent {
   @ViewChild('npcCard')
   childNPC: PlayingCardsComponent = new PlayingCardsComponent;
 
-  cardCount_p: number = 25;
-  cardCount_npc: number = 25;
+  cardCount_p: number = 26;
+  cardCount_npc: number = 26;
 
   roundwinner: string = '';
   gamewinner: string = '';
@@ -161,6 +161,8 @@ export class WarComponent {
       this.npcDeck.push(pCard);
       this.npcDeck.push(npcCard);
     }
+    console.log("pDeck size: " + this.pDeck.length);
+    console.log("npcDeck size: " + this.npcDeck.length);
     this.cardCount_p = this.pDeck.length;
     this.cardCount_npc = this.npcDeck.length;
   }
@@ -241,41 +243,50 @@ export class WarComponent {
       npcCardVal = Object.values(npcCard)[2] as number;
     }
 
+    console.log("Player deck size start: " + this.pDeck.length);
+    console.log("NPC deck size start: " + this.npcDeck.length);
     // give winner both pots
     if (pCardVal > npcCardVal) {
       this.roundwinner = 'Player';
-      for(let i = 0; i < pPot.length; i++) {
+      while(pPot.length != 0) {
         // add player pot cards
         let card = pPot.pop();
         if (card) {
           this.pDeck.push(card);
+          console.log("Player new deck size: " + this.pDeck.length);
         }
       }
-      for(let i = 0; i < npcPot.length; i++) {
+      while(npcPot.length != 0) {
         // add opponent pot cards
         let card = npcPot.pop();
         if (card) {
           this.pDeck.push(card);
+          console.log("Player new deck size: " + this.pDeck.length);
         }
       }
     }
     if (pCardVal < npcCardVal) {
       this.roundwinner = 'Opponent';
-      for(let i = 0; i < pPot.length; i++) {
+      while(pPot.length != 0) {
         // add player pot cards
         let card = pPot.pop();
         if (card) {
           this.npcDeck.push(card);
+          console.log("NPC new deck size: " + this.npcDeck.length);
         }
       }
-      for(let i = 0; i < npcPot.length; i++) {
+      while(npcPot.length != 0) {
         // add opponent pot cards
         let card = npcPot.pop();
         if (card) {
           this.npcDeck.push(card);
+          console.log("NPC new deck size: " + this.npcDeck.length);
         }
       }
     }
   }
+  this.cardCount_p = this.pDeck.length;
+  this.cardCount_npc = this.npcDeck.length;
   }
+
 }

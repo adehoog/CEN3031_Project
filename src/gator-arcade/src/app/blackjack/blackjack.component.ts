@@ -148,10 +148,12 @@ export class BlackjackComponent {
     // add card vals to totals
     if (!this.playerStands) {
       // if player wants more cards
+      console.log("adding playing card");
       this.roundTotal = this.roundTotal + playerCardVal;
     }
     if (!this.dealerStands) {
       // if dealer wants more cards
+      console.log("adding dealer card");
       this.dealerRoundTotal = this.dealerRoundTotal + dealerCardVal;
     }
 
@@ -159,25 +161,26 @@ export class BlackjackComponent {
   }
 
   checkWin(){
-    if (this.roundTotal == 21 || this.dealerRoundTotal > 21){
-      console.log("Player won");
-      // player gets 21 or dealer breaks 21
-      this.winner = 'Player';
-      this.totalMoney = this.totalMoney + this.bettingPool;
-      this.roundReset();
-    }
-    else if (this.dealerRoundTotal == 21 || this.roundTotal > 21){
+    console.log("Player's round total: " + this.roundTotal);
+    if (this.dealerRoundTotal == 21 || this.roundTotal > 21){
       console.log("Dealer won");
       // dealer gets 21 or player breaks 21
       this.winner = 'Dealer';
       this.totalMoney = this.totalMoney - this.currentBet;
       if (this.totalMoney == 0){
         // player out of money
-        this.gameReset();
+        this.showPlayAgain();
       }
       else {
         this.roundReset();
       }
+    }
+    else if (this.roundTotal == 21 || this.dealerRoundTotal > 21){
+      console.log("Player won");
+      // player gets 21 or dealer breaks 21
+      this.winner = 'Player';
+      this.totalMoney = this.totalMoney + this.bettingPool;
+      this.roundReset();
     }
     else if (this.playerStands && this.dealerStands) {
       if (this.roundTotal > this.dealerRoundTotal) {
