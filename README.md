@@ -2,9 +2,9 @@
 Welcome to Gator Arcade, a collection of classic board and card games, including Blackjack, Checkers, Connect Four, Tic Tac Toe, and War. To avoid programming any AI, multipalyer games require real people to play by taking turns using the same screen.
 ## Getting Started
 To run the application, navigate to the project directory and run **ng serve** in the terminal. Then open your web browser and go to **http://localhost:4200/**. The application will load, and you can choose which game you want to play by clicking on the corresponding tile.
-## Comands
+## CMD Terminal Comands
 #### Run project
-Navigate to ```src\gator-arcade\src\app```
+Navigate to project directory with ```cd src\gator-arcade\src\app```
 
 Run with ```ng serve```
 
