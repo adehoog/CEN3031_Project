@@ -112,6 +112,14 @@ TestCalculateHand - should test that the function calculating the player's curre
   
 TestCompareHands - should test that the function calculating and comparing the player's and dealer's hands is accurate
   
+**ConnectFour**
+  
+ TestPlaceTile_Legal - should test that legal tile placements are allowed and the tile falls to the lowest possible row
+  
+ TestPlaceTile_Illegal - should test that out-of-bounds tile placements are stopped and the player gets another turn
+  
+ TestCheckIfWon - should test all possible winning patterns (horizontal, vertical, diagonal) are found and the correct winner is reported
+  
 
 ### **Backend API Documentation**
 **Introduction**
