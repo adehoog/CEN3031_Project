@@ -2,6 +2,21 @@
 Welcome to Gator Arcade, a collection of classic board and card games, including Blackjack, Checkers, Connect Four, Tic Tac Toe, and War. To avoid programming any AI, multipalyer games require real people to play by taking turns using the same screen.
 ## Getting Started
 To run the application, navigate to the project directory and run **ng serve** in the terminal. Then open your web browser and go to **http://localhost:4200/**. The application will load, and you can choose which game you want to play by clicking on the corresponding tile.
+## Comands
+#### Run project
+Navigate to ```src\gator-arcade\src\app```
+
+Run with ```ng serve```
+
+Close with ```[ctrl] + [c]```
+
+To add packages, run ```npm install```
+
+### Run Tests
+
+To run Cypress tests, navigate to ```src\gator-arcade``` then run ```npx cypress open```
+
+To run Unit tests, navigate to ```src\gator-arcade\src\app``` then run ```ng test```
 ## Games
 ### Blackjack
 A classic card game where the goal is to get as close to 21 as possible without going over.
