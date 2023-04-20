@@ -1,5 +1,14 @@
 ### **Detail of Work Completed in Sprint 4**
-Fixed unit tests. 
+
+For the Gator Arcade, we added gameplay functionality to our application. Our games are playable and will allow the user to choose between the available games on our application. The user can choose from Blackjack, Checkers, Connect Four, Tic Tac Toe, and War. The games require an individual player, or players to take turns using the same screen.
+
+Created the checkers.service.ts file that contains the implementation of the checkers service. The functions initGame, getPieceColor, onSquareClick, movePiece, isValidMove, isGameOver, countPieces, getCurrentPlayerColor, and resetGame are the functions that define the behaviors of the game checkers.
+
+Created the checkers.service.spec.ts file which is the testing file that tests the checkers.service.ts file functions using Karma automated testing software to test the functions in the browser. This file contains a suite of tests that ensure the checkers.service.ts file functions are working as expected, as well as providing a description of the expected behavior of each function.
+
+Created the connect-four.service.ts file that contains the implementation of the connect four service. The functions makeMove, checkWin, and reset are the functions that define the behaviors of the game connect four.
+
+Created the connect-four.service.spec.ts file which is the testing file that tests the connect-four.service.ts file functions using Karma automated testing software to test the functions in the browser. This file contains a suite of tests that ensure the connect-four.service.ts file functions are working as expected, as well as providing a description of the expected behavior of each function.
 
 ### **Unit Tests for Frontend**
 
